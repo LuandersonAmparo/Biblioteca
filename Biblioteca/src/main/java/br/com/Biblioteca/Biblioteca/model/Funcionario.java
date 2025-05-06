@@ -7,6 +7,7 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Funcionario {
+
     @Id
     @GeneratedValue
     private Long id;
