@@ -1,0 +1,252 @@
+23:20 15/05/2025Título: Orgulho e Preconceito
+
+Autor: Jane Austen
+ISBN: 978-0141439518
+Categoria: Romance
+Título: 1984
+
+Autor: George Orwell
+ISBN: 978-0451524935
+Categoria: Ficção Científica
+Título: Dom Quixote
+
+Autor: Miguel de Cervantes
+ISBN: 978-0060934347
+Categoria: Clássico
+Título: O Pequeno Príncipe
+
+Autor: Antoine de Saint-Exupéry
+ISBN: 978-0156012195
+Categoria: Infantil/Filosofia
+Título: Dom Casmurro
+
+Autor: Machado de Assis
+ISBN: 978-8503010503
+Categoria: Literatura Brasileira
+Título: Cem Anos de Solidão
+
+Autor: Gabriel García Márquez
+ISBN: 978-0060883287
+Categoria: Realismo Mágico
+Título: O Senhor dos Anéis
+
+Autor: J.R.R. Tolkien
+ISBN: 978-0261102385
+Categoria: Fantasia
+Título: A Revolução dos Bichos
+
+Autor: George Orwell
+ISBN: 978-0451526342
+Categoria: Sátira
+Título: Moby Dick
+
+Autor: Herman Melville
+ISBN: 978-1503280786
+Categoria: Aventura
+Título: A Metamorfose
+
+Autor: Franz Kafka
+ISBN: 978-0805210576
+Categoria: Ficção
+
+Título: Crime e Castigo
+
+Autor: Fiódor Dostoiévski
+ISBN: 978-0140449136
+Categoria: Romance Psicológico
+Título: O Grande Gatsby
+
+Autor: F. Scott Fitzgerald
+ISBN: 978-0743273565
+Categoria: Clássico Americano
+Título: A Divina Comédia
+
+Autor: Dante Alighieri
+ISBN: 978-0140448955
+Categoria: Poesia Épica
+Título: O Apanhador no Campo de Centeio
+
+Autor: J.D. Salinger
+ISBN: 978-0316769488
+Categoria: Ficção
+Título: O Hobbit
+
+Autor: J.R.R. Tolkien
+ISBN: 978-0547928227
+Categoria: Fantasia
+Título: As Aventuras de Huckleberry Finn
+
+Autor: Mark Twain
+ISBN: 978-0486280615
+Categoria: Aventura
+Título: Jane Eyre
+
+Autor: Charlotte Brontë
+ISBN: 978-0141441146
+Categoria: Romance
+Título: O Conde de Monte Cristo
+
+Autor: Alexandre Dumas
+ISBN: 978-0140449266
+Categoria: Aventura
+Título: O Estrangeiro
+
+Autor: Albert Camus
+ISBN: 978-0679720201
+Categoria: Filosofia
+Título: Drácula
+
+Autor: Bram Stoker
+ISBN: 978-0486411095
+Categoria: Horror
+Título: O Morro dos Ventos Uivantes
+
+Autor: Emily Brontë
+ISBN: 978-0141439556
+Categoria: Romance Gótico
+Título: Frankenstein
+
+Autor: Mary Shelley
+ISBN: 978-0486282114
+Categoria: Ficção Científica
+Título: As Crônicas de Nárnia
+
+Autor: C.S. Lewis
+ISBN: 978-0066238500
+Categoria: Fantasia
+Título: O Sol é Para Todos
+
+Autor: Harper Lee
+ISBN: 978-0060935467
+Categoria: Clássico Americano
+Título: O Nome da Rosa
+
+Autor: Umberto Eco
+ISBN: 978-0156001311
+Categoria: Mistério
+
+Título: O Processo
+
+Autor: Franz Kafka
+ISBN: 978-0805209990
+Categoria: Ficção
+Título: O Retrato de Dorian Gray
+
+Autor: Oscar Wilde
+ISBN: 978-0141439570
+Categoria: Clássico
+Título: A Ilha do Tesouro
+
+Autor: Robert Louis Stevenson
+ISBN: 978-0486275598
+Categoria: Aventura
+Título: A Letra Escarlate
+
+Autor: Nathaniel Hawthorne
+ISBN: 978-0142437261
+Categoria: Clássico Americano
+Título: O Médico e o Monstro
+
+Autor: Robert Louis Stevenson
+ISBN: 978-0486266886
+Categoria: Horror
+Título: O Idiota
+
+Autor: Fiódor Dostoiévski
+ISBN: 978-0140447927
+Categoria: Romance Psicológico
+Título: A Montanha Mágica
+
+Autor: Thomas Mann
+ISBN: 978-0679772873
+Categoria: Clássico
+Título: O Velho e o Mar
+
+Autor: Ernest Hemingway
+ISBN: 978-0684801223
+Categoria: Ficção
+Título: O Som e a Fúria
+
+Autor: William Faulkner
+ISBN: 978-0679732242
+Categoria: Clássico Americano
+Título: O Senhor das Moscas
+
+Autor: William Golding
+ISBN: 978-0399501487
+Categoria: Ficção
+Título: O Retrato de uma Senhora
+
+Autor: Henry James
+ISBN: 978-0141441269
+Categoria: Romance
+Título: O Coração das Trevas
+
+Autor: Joseph Conrad
+ISBN: 978-0141441672
+Categoria: Aventura
+Título: O Grande Sertão: Veredas
+
+Autor: João Guimarães Rosa
+ISBN: 978-8535925996
+Categoria: Literatura Brasileira
+Título: O Homem Invisível
+
+Autor: H.G. Wells
+ISBN: 978-0451531674
+Categoria: Ficção Científica
+Título: O Jardim Secreto
+
+Autor: Frances Hodgson Burnett
+ISBN: 978-0141336534
+Categoria: Infantil
+Título: O Corcunda de Notre-Dame
+
+Autor: Victor Hugo
+ISBN: 978-0140443530
+Categoria: Clássico
+Título: O Livro das Ilusões
+
+Autor: Paul Auster
+ISBN: 978-0312421816
+Categoria: Ficção
+Título: O Homem que Riu
+
+Autor: Victor Hugo
+ISBN: 978-0140449631
+Categoria: Clássico
+Título: O Lobo da Estepe
+
+Autor: Hermann Hesse
+ISBN: 978-0312278670
+Categoria: Ficção
+Título: O Vermelho e o Negro
+
+Autor: Stendhal
+ISBN: 978-0140447644
+Categoria: Romance
+Título: O Primo Basílio
+
+Autor: Eça de Queirós
+ISBN: 978-9722030000
+Categoria: Literatura Portuguesa
+Título: O Jogador
+
+Autor: Fiódor Dostoiévski
+ISBN: 978-0140441796
+Categoria: Romance Psicológico
+Título: O Homem Duplicado
+
+Autor: José Saramago
+ISBN: 978-0156028011
+Categoria: Ficção
+Título: O Nome do Vento
+
+Autor: Patrick Rothfuss
+ISBN: 978-0756404741
+Categoria: Fantasia
+Título: O Senhor das Moscas
+
+Autor: William Golding
+ISBN: 978-0399501487
+Categoria: Ficção

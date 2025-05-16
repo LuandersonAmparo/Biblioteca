@@ -1,11 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home Page</title>
-</head>
-<body>
-<h1>Essa è a tela Inicial do app de Biblioteca</h1>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Biblioteca</title>
+    </head>
+    <body>
+    <a href="/livros/novo">➕ Adicionar Livro</a>
 
-</body>
+    <form method="get" action="/">
+            <input type="text" name="busca" placeholder="Buscar livro..." />
+            <select name="filtro">
+                <option value="titulo">Título</option>
+                <option value="autor">Autor</option>
+                <option value="categoria">Categoria</option>
+            </select>
+            <button type="submit">Buscar</button>
+        </form>
+        <h1>📚 Lista de Livros</h1>
+        <table border="1">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>ISBN</th>
+                <th>Categoria</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="livro : ${livros}">
+                <td th:text="${livro.titulo}"></td>
+                <td th:text="${livro.autor}"></td>
+                <td th:text="${livro.isbn}"></td>
+                <td th:text="${livro.categoria}"></td>
+               <!-- Inicio : editar e excluir -->
+                <th>Ações</th>
+
+                <td>
+                    <a th:href="@{'/livros/editar/' + ${livro.id}}">Editar</a> |
+                    <a th:href="@{'/livros/excluir/' + ${livro.id}}" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                </td>
+                <!-- Fim: editar e excluir -->
+            </tr>
+        </tbody>
+        </table>
+    </body>
 </html>
