@@ -5,6 +5,8 @@ import br.com.Biblioteca.Biblioteca.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
+
 
 import java.util.List;
 
@@ -19,29 +21,36 @@ public class LivroController {
     public List<Livro> listarLivros() {
         return livroRepo.findAll();
     }
-    @GetMapping("/livros/novo") //EndPoint Adicionar
+
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/livros/novo")
     public String novoLivro(Model model) {
         model.addAttribute("livro", new Livro());
         return "form-livro";
     }
 
-    @PostMapping("/livros/salvar") //EndPoint Salvar
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/livros/salvar")
     public String salvarLivro(@ModelAttribute Livro livro) {
         livroRepo.save(livro);
         return "redirect:/";
     }
 
-    @GetMapping("/livros/editar/{id}")//EndPoint Atualizar
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/livros/editar/{id}")
     public String editarLivro(@PathVariable Long id, Model model) {
-        Livro livro = livroRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido: " + id));
+        Livro livro = livroRepo.findById(id).orElseThrow();
         model.addAttribute("livro", livro);
         return "form-livro";
     }
 
-    @GetMapping("/livros/excluir/{id}") //EndPoint Deletar Livro por ID
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/livros/excluir/{id}")
     public String excluirLivro(@PathVariable Long id) {
         livroRepo.deleteById(id);
         return "redirect:/";
     }
+
 
 }

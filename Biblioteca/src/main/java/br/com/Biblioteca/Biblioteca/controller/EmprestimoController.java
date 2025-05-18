@@ -2,9 +2,15 @@ package br.com.Biblioteca.Biblioteca.controller;
 
 import br.com.Biblioteca.Biblioteca.model.Emprestimo;
 import br.com.Biblioteca.Biblioteca.model.Livro;
+import br.com.Biblioteca.Biblioteca.model.TipoUsuario;
+import br.com.Biblioteca.Biblioteca.model.Usuario;
 import br.com.Biblioteca.Biblioteca.repository.EmprestimoRepository;
 import br.com.Biblioteca.Biblioteca.repository.LivroRepository;
+import br.com.Biblioteca.Biblioteca.service.UsuarioLogadoService;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,33 +28,79 @@ public class EmprestimoController {
     @Autowired
     private LivroRepository livroRepo;
 
-    @GetMapping("/novo")
-    public String novoEmprestimo(Model model) {
-        model.addAttribute("emprestimo", new Emprestimo());
+    @Autowired
+    private UsuarioLogadoService usuarioLogadoService;
+
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'FUNCIONARIO')")
+    @GetMapping("/emprestimos/novo")
+    public String novoEmprestimo(@RequestParam(required = false) Long livro,
+                                 Model model) {
+        Emprestimo emp = new Emprestimo();
+
+        if (livro != null) {
+            livroRepo.findById(livro).ifPresent(emp::setLivro);
+        }
+
+        model.addAttribute("emprestimo", emp);
         model.addAttribute("livros", livroRepo.findAll());
+
         return "form-emprestimo";
     }
 
-    @PostMapping("/salvar")
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'FUNCIONARIO')")
+    @PostMapping("/emprestimos/salvar")
     public String salvarEmprestimo(@ModelAttribute Emprestimo emprestimo) {
+        Usuario usuario = usuarioLogadoService.getUsuarioLogado();
+
+        emprestimo.setNomeUsuario(usuario.getNome());
         emprestimo.setDataEmprestimo(LocalDate.now());
+
         emprestimoRepo.save(emprestimo);
         return "redirect:/emprestimos";
     }
 
-    @GetMapping
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'FUNCIONARIO')")
+    @GetMapping("/emprestimos")
     public String listarEmprestimos(Model model) {
-        List<Emprestimo> lista = emprestimoRepo.findAll();
-        model.addAttribute("emprestimos", lista);
+        Usuario usuario = usuarioLogadoService.getUsuarioLogado();
+
+        List<Emprestimo> emprestimos;
+
+        if (usuario.getTipo() == TipoUsuario.ALUNO) {
+            emprestimos = emprestimoRepo.findByNomeUsuario(usuario.getNome());
+        } else {
+            emprestimos = emprestimoRepo.findAll();
+        }
+
+        model.addAttribute("emprestimos", emprestimos);
+        model.addAttribute("usuario", usuario);
+
         return "lista-emprestimos";
     }
 
-    @GetMapping("/devolver/{id}")
+
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'FUNCIONARIO')")
+    @GetMapping("/emprestimos/devolver/{id}")
     public String devolverLivro(@PathVariable Long id) {
-        Emprestimo emprestimo = emprestimoRepo.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("ID inválido: " + id));
+        Emprestimo emprestimo = emprestimoRepo.findById(id).orElseThrow();
         emprestimo.setDataDevolucao(LocalDate.now());
         emprestimoRepo.save(emprestimo);
         return "redirect:/emprestimos";
     }
+    @GetMapping("/alugar/{id}")
+    public String alugarLivro(@PathVariable Long id) {
+        var auth = SecurityContextHolder.getContext().getAuthentication();
+
+        if (auth == null || auth.getAuthorities().isEmpty() || auth.getPrincipal().equals("anonymousUser")) {
+            return "redirect:/login";
+        }
+
+        return "redirect:/emprestimos/novo?livro=" + id;
+    }
+
+
 }

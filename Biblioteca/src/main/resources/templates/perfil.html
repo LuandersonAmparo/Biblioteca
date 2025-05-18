@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil do Usuário</title>
+</head>
+<body>
+
+
+<h1>👤 Perfil</h1>
+<p><strong>Nome:</strong> <span th:text="${usuario.nome}"></span></p>
+<p><strong>Login:</strong> <span th:text="${usuario.login}"></span></p>
+<p><strong>Tipo:</strong> <span th:text="${usuario.tipo}"></span></p>
+
+<h2>📚 Meus Empréstimos</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Livro</th>
+        <th>Data Empréstimo</th>
+        <th>Data Devolução</th>
+        <th th:if="${usuario.tipo == 'ADMIN' or usuario.tipo == 'FUNCIONARIO'}">Ação</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="emp : ${emprestimos}">
+        <td th:text="${emp.livro.titulo}"></td>
+        <td th:text="${emp.dataEmprestimo}"></td>
+        <td th:text="${emp.dataDevolucao != null ? emp.dataDevolucao : '---'}"></td>
+        <td th:if="${usuario.tipo == 'ADMIN' or usuario.tipo == 'FUNCIONARIO'}">
+            <a th:if="${emp.dataDevolucao == null}"
+               th:href="@{'/emprestimos/devolver/' + ${emp.id}}">
+                Devolver
+            </a>
+            <span th:if="${emp.dataDevolucao != null}">✓</span>
+        </td>
+    </tr>
+    <div th:if="${usuario.tipo == 'ADMIN'}">
+        <h2>📚 Gerenciar Livros</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Categoria</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="livro : ${livros}">
+                <td th:text="${livro.titulo}"></td>
+                <td th:text="${livro.autor}"></td>
+                <td th:text="${livro.categoria}"></td>
+                <td>
+                    <a th:href="@{'/livros/editar/' + ${livro.id}}">Editar</a> |
+                    <a th:href="@{'/livros/excluir/' + ${livro.id}}" onclick="return confirm('Tem certeza?')">Excluir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    </tbody>
+</table>
+
+<a href="/">Voltar</a>
+</body>
+</html>

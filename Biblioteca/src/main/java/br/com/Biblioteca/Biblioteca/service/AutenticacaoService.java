@@ -19,7 +19,15 @@ public class AutenticacaoService implements UserDetailsService {
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepo.findByLogin(login)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
-        return new User(usuario.getLogin(), usuario.getSenha(),
-                Collections.singleton(new SimpleGrantedAuthority("ROLE_" + usuario.getTipo())));
+
+        // Spring exige prefixo "ROLE_"
+        String role = "ROLE_" + usuario.getTipo().name();
+
+        return new User(
+                usuario.getLogin(),
+                usuario.getSenha(),
+                Collections.singleton(new SimpleGrantedAuthority(role))
+        );
     }
+
 }

@@ -1,47 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Biblioteca</title>
-    </head>
-    <body>
-    <a href="/livros/novo">➕ Adicionar Livro</a>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout :: layout (~{::title}, ~{::main})">
+<head>
+    <title>Início</title>
+</head>
+<main>
+
+
+
+
+    <h1>📚 Lista de Livros</h1>
 
     <form method="get" action="/">
-            <input type="text" name="busca" placeholder="Buscar livro..." />
-            <select name="filtro">
-                <option value="titulo">Título</option>
-                <option value="autor">Autor</option>
-                <option value="categoria">Categoria</option>
-            </select>
-            <button type="submit">Buscar</button>
-        </form>
-        <h1>📚 Lista de Livros</h1>
-        <table border="1">
+        <input type="text" name="busca" placeholder="Buscar livro..." />
+        <select name="filtro">
+            <option value="titulo">Título</option>
+            <option value="autor">Autor</option>
+            <option value="categoria">Categoria</option>
+        </select>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div th:if="${usuarioLogado != null and usuarioLogado.tipo == 'ADMIN'}">
+        <a href="/livros/novo">➕ Adicionar Livro</a>
+    </div>
+
+    <table border="1">
         <thead>
-            <tr>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>ISBN</th>
-                <th>Categoria</th>
-            </tr>
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>ISBN</th>
+            <th>Categoria</th>
+            <th>Ação</th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="livro : ${livros}">
-                <td th:text="${livro.titulo}"></td>
-                <td th:text="${livro.autor}"></td>
-                <td th:text="${livro.isbn}"></td>
-                <td th:text="${livro.categoria}"></td>
-               <!-- Inicio : editar e excluir -->
-                <th>Ações</th>
-
-                <td>
-                    <a th:href="@{'/livros/editar/' + ${livro.id}}">Editar</a> |
-                    <a th:href="@{'/livros/excluir/' + ${livro.id}}" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
-                </td>
-                <!-- Fim: editar e excluir -->
-            </tr>
+        <tr th:each="livro : ${livros}">
+            <td th:text="${livro.titulo}"></td>
+            <td th:text="${livro.autor}"></td>
+            <td th:text="${livro.isbn}"></td>
+            <td th:text="${livro.categoria}"></td>
+            <td>
+                <a th:href="@{'/alugar/' + ${livro.id}}">Alugar</a>
+            </td>
+        </tr>
         </tbody>
-        </table>
-    </body>
+    </table>
+</main>
 </html>

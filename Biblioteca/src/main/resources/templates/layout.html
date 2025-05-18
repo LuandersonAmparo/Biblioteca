@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:fragment="layout(title, content)">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="${title}">Biblioteca</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #eee;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        main {
+            padding: 20px;
+            padding-bottom: 60px; /* espaço pro footer */
+        }
+    </style>
+</head>
+<body>
+
+
+<header>
+    <div>
+        <a href="/">📚 Biblioteca</a>
+    </div>
+    <!-- trecho que exibe o nome do usuario da area logada -->
+    <div style="display: flex; align-items: center; gap: 15px;">
+    <span th:if="${usuarioLogado != null}">
+      👤 <strong th:text="${usuarioLogado.nome}">Usuário</strong>
+      (<span th:text="${usuarioLogado.tipo}">TIPO</span>)
+    </span>
+
+        <form th:if="${usuarioLogado != null}" th:action="@{/logout}" method="post" style="display: inline;">
+            <button type="submit">Sair</button>
+        </form>
+
+        <a th:if="${usuarioLogado == null}" href="/login">Login</a>
+    </div>
+</header>
+
+
+<main th:replace="${content}">[conteúdo]</main>
+
+<footer>
+    Sistema de Biblioteca © 2025
+</footer>
+
+</body>
+</html>

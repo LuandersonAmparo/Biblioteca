@@ -2,11 +2,12 @@ package br.com.Biblioteca.Biblioteca.controller;
 
 import br.com.Biblioteca.Biblioteca.model.Livro;
 import br.com.Biblioteca.Biblioteca.repository.LivroRepository;
+import br.com.Biblioteca.Biblioteca.service.UsuarioLogadoService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,13 +17,15 @@ public class HomeController {
     @Autowired
     private LivroRepository livroRepo;
 
+    @Autowired
+    private UsuarioLogadoService usuarioLogadoService;
+
     @GetMapping("/")
     public String home(@RequestParam(required = false) String busca,
                        @RequestParam(required = false) String filtro,
                        Model model) {
 
         List<Livro> livros;
-
         if (busca != null && !busca.isEmpty()) {
             switch (filtro) {
                 case "autor":
@@ -39,7 +42,8 @@ public class HomeController {
         }
 
         model.addAttribute("livros", livros);
+        model.addAttribute("usuarioLogado", usuarioLogadoService.getUsuarioLogado());
+
         return "home";
     }
-
 }
