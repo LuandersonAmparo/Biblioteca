@@ -1,6 +1,5 @@
 package br.com.Biblioteca.Biblioteca.controller;
 
-import br.com.Biblioteca.Biblioteca.model.Emprestimo;
 import br.com.Biblioteca.Biblioteca.model.Usuario;
 import br.com.Biblioteca.Biblioteca.model.TipoUsuario;
 import br.com.Biblioteca.Biblioteca.repository.EmprestimoRepository;
@@ -12,8 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/usuario")
@@ -56,8 +53,9 @@ public class UsuarioController {
             model.addAttribute("usuarios", usuarioRepo.findAll());
         }
 
-        return "perfil"; 
+        return "perfil";
     }
+
 
 
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="layout :: layout (~{::title}, ~{::main})">
+      th:replace="~{layout :: layout (~{::title}, ~{::main})}"></div>
 <head>
     <title>Início</title>
 </head>
@@ -16,7 +16,7 @@
         </select>
         <button type="submit">Buscar</button>
     </form>
-
+    <!-- tRECHO QUE ADICIONA O BOTÃO ADD LIVRO SE O USUARIO FOR admin-->
     <div th:if="${usuarioLogado != null and usuarioLogado.tipo == 'ADMIN'}">
         <a href="/livros/novo">➕ Adicionar Livro</a>
     </div>

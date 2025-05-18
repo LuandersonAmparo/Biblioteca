@@ -1,35 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::title}, ~{::main})}">
 <head>
-    <meta charset="UTF-8">
-    <title>Empréstimos</title>
+    <title>Lista de Empréstimos</title>
 </head>
-<body>
-<h1>Lista de Empréstimos</h1>
-<a href="/emprestimos/novo">➕ Novo Empréstimo</a>
-<table border="1">
-    <thead>
-    <tr>
-        <th>Livro</th>
-        <th>Usuário</th>
-        <th>Data Empréstimo</th>
-        <th>Data Devolução</th>
-        <th>Ação</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="emp : ${emprestimos}">
-        <td th:text="${emp.livro.titulo}"></td>
-        <td th:text="${emp.nomeUsuario}"></td>
-        <td th:text="${emp.dataEmprestimo}"></td>
-        <td th:text="${emp.dataDevolucao} != null ? ${emp.dataDevolucao} : '---'"></td>
-        <td th:if="${emp.dataDevolucao == null}">
-            <a th:href="@{'/emprestimos/devolver/' + ${emp.id}}">Devolver</a>
-        </td>
-        <td th:if="${emp.dataDevolucao != null}">✓</td>
-    </tr>
-    </tbody>
-</table>
-<a href="/">Voltar</a>
-</body>
+<main>
+    <h1>📄 Lista de Empréstimos</h1>
+
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Livro</th>
+            <th>Usuário</th>
+            <th>Data Empréstimo</th>
+            <th>Data Devolução</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="emp : ${emprestimos}">
+            <td th:text="${emp.livro.titulo}"></td>
+            <td th:text="${emp.usuario.nome}"></td>
+            <td th:text="${emp.dataEmprestimo}"></td>
+            <td th:text="${emp.dataDevolucao != null ? emp.dataDevolucao : '---'}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
 </html>

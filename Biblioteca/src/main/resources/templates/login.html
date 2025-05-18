@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout :: layout(~{::title}, ~{::main})}">
 <head>
-    <meta charset="UTF-8">
     <title>Login</title>
 </head>
-<body>
-<h1>Entrar na Biblioteca</h1>
-<form method="post" th:action="@{/login}">
-    <label>Login:</label>
-    <input type="text" name="username"/><br/>
-    <label>Senha:</label>
-    <input type="password" name="password"/><br/>
-    <button type="submit">Entrar</button>
-</form>
-<p th:if="${param.error}">❌ Usuário ou senha inválidos</p>
-<p th:if="${param.logout}">✅ Logout efetuado com sucesso</p>
-</body>
+<main>
+    <h1>Entrar na Biblioteca</h1>
+
+    <form method="post" th:action="@{/login}">
+        <label>Login:</label>
+        <input type="text" name="username"/><br/>
+        <label>Senha:</label>
+        <input type="password" name="password"/><br/>
+        <button type="submit">Entrar</button>
+    </form>
+
+    <p th:if="${param.error}">❌ Usuário ou senha inválidos</p>
+    <p th:if="${param.logout}">✅ Logout efetuado com sucesso</p>
+</main>
 </html>
