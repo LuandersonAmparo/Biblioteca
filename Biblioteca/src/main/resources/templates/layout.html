@@ -47,15 +47,18 @@
 
 
 <header>
+    <!-- Trecho que exibe o botão Perfil na area logada-->
     <div>
         <a href="/">📚 Biblioteca</a>
+        <a th:if="${usuarioLogado != null}" href="/perfil" style="margin-left: 15px;">Perfil</a>
     </div>
     <!-- trecho que exibe o nome do usuario da area logada -->
     <div style="display: flex; align-items: center; gap: 15px;">
-    <span th:if="${usuarioLogado != null}">
-      👤 <strong th:text="${usuarioLogado.nome}">Usuário</strong>
-      (<span th:text="${usuarioLogado.tipo}">TIPO</span>)
-    </span>
+
+        <span th:if="${usuarioLogado != null}">
+          👤 <strong th:text="${usuarioLogado.nome}">Usuário</strong>
+             (<span th:text="${usuarioLogado.tipo}">TIPO</span>)
+        </span>
 
         <form th:if="${usuarioLogado != null}" th:action="@{/logout}" method="post" style="display: inline;">
             <button type="submit">Sair</button>

@@ -6,11 +6,12 @@
 </head>
 <body>
 
-
 <h1>👤 Perfil</h1>
 <p><strong>Nome:</strong> <span th:text="${usuario.nome}"></span></p>
 <p><strong>Login:</strong> <span th:text="${usuario.login}"></span></p>
 <p><strong>Tipo:</strong> <span th:text="${usuario.tipo}"></span></p>
+
+<hr/>
 
 <h2>📚 Meus Empréstimos</h2>
 <table border="1">
@@ -28,40 +29,55 @@
         <td th:text="${emp.dataEmprestimo}"></td>
         <td th:text="${emp.dataDevolucao != null ? emp.dataDevolucao : '---'}"></td>
         <td th:if="${usuario.tipo == 'ADMIN' or usuario.tipo == 'FUNCIONARIO'}">
-            <a th:if="${emp.dataDevolucao == null}"
-               th:href="@{'/emprestimos/devolver/' + ${emp.id}}">
-                Devolver
-            </a>
+            <a th:if="${emp.dataDevolucao == null}" th:href="@{'/emprestimos/devolver/' + ${emp.id}}">Devolver</a>
             <span th:if="${emp.dataDevolucao != null}">✓</span>
         </td>
     </tr>
-    <div th:if="${usuario.tipo == 'ADMIN'}">
-        <h2>📚 Gerenciar Livros</h2>
-        <table border="1">
-            <thead>
-            <tr>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>Categoria</th>
-                <th>Ações</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="livro : ${livros}">
-                <td th:text="${livro.titulo}"></td>
-                <td th:text="${livro.autor}"></td>
-                <td th:text="${livro.categoria}"></td>
-                <td>
-                    <a th:href="@{'/livros/editar/' + ${livro.id}}">Editar</a> |
-                    <a th:href="@{'/livros/excluir/' + ${livro.id}}" onclick="return confirm('Tem certeza?')">Excluir</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
     </tbody>
 </table>
+
+<!-- SEÇÃO ADMIN -->
+<div th:if="${usuario.tipo == 'ADMIN'}">
+    <hr/>
+
+    <h2>📚 Gerenciar Livros</h2>
+    <a href="/livros/novo">➕ Adicionar Novo Livro</a>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="livro : ${livros}">
+            <td th:text="${livro.titulo}"></td>
+            <td th:text="${livro.autor}"></td>
+            <td th:text="${livro.categoria}"></td>
+            <td>
+                <a th:href="@{'/livros/editar/' + ${livro.id}}">Editar</a> |
+                <a th:href="@{'/livros/excluir/' + ${livro.id}}"
+                   onclick="return confirm('Tem certeza que deseja excluir este livro?')">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr/>
+
+    <h2>👥 Usuários</h2>
+    <p>
+        <a href="/admin/usuarios">Listar Todos os Usuários</a> |
+        <a href="/admin/funcionarios">Listar Funcionários</a>
+    </p>
+
+    <h2>📖 Empréstimos</h2>
+    <p>
+        <a href="/emprestimos">Ver todos os empréstimos</a>
+    </p>
+</div>
 
 <a href="/">Voltar</a>
 </body>

@@ -49,13 +49,16 @@ public class UsuarioController {
     public String perfil(Model model) {
         Usuario usuario = usuarioLogadoService.getUsuarioLogado();
         model.addAttribute("usuario", usuario);
+        model.addAttribute("emprestimos", emprestimoRepo.findByNomeUsuario(usuario.getNome()));
 
-        List<Emprestimo> emprestimos = emprestimoRepo.findByNomeUsuario(usuario.getNome());
-        model.addAttribute("emprestimos", emprestimos);
-        model.addAttribute("livros", livroRepo.findAll());
+        if (usuario.getTipo() == TipoUsuario.ADMIN) {
+            model.addAttribute("livros", livroRepo.findAll());
+            model.addAttribute("usuarios", usuarioRepo.findAll());
+        }
 
-        return "perfil";
+        return "perfil"; 
     }
+
 
 
 }
