@@ -18,11 +18,18 @@
         </select>
         <button type="submit">Buscar</button>
     </form>
+
+    <!-- botao emprestimo de livros para alunos -->
+    <div th:if="${usuarioLogado != null and usuarioLogado.tipo.name() == 'ALUNO'}">
+        <a href="/emprestimos/emprestimos">📖 Ver meus empréstimos</a>
+    </div>
+
     <!-- tRECHO QUE ADICIONA O BOTÃO ADD LIVRO SE O USUARIO FOR admin-->
-    <div th:if="${usuarioLogado != null and usuarioLogado.tipo.name() == 'ADMIN'}">
+    <div th:if="${usuarioLogado != null and (usuarioLogado.tipo.name() == 'ADMIN' or usuarioLogado.tipo.name() == 'FUNCIONARIO')}">
         <a href="/livros/novo">➕ Adicionar Livro</a>
     </div>
 
+    <!-- cadastro de funcionarios apenas para ADM-->
     <div th:if="${usuarioLogado != null and usuarioLogado.tipo.name() == 'ADMIN'}">
         <a href="/usuarios/novo">👥 Cadastrar Funcionário/ADM</a>
     </div>
@@ -44,9 +51,19 @@
             <td th:text="${livro.isbn}"></td>
             <td th:text="${livro.categoria}"></td>
             <td>
-                <a th:href="@{'/emprestimos/alugar/' + ${livro.id}}">Alugar</a>
+                <!-- Apenas ALUNO pode ver o botão "Alugar" -->
+                <a th:if="${usuarioLogado.tipo.name() == 'ALUNO'}"
+                   th:href="@{'/emprestimos/alugar/' + ${livro.id}}">Alugar</a>
 
+                <!-- ADMIN e FUNCIONARIO podem ativar/desativar -->
+                <span th:if="${usuarioLogado.tipo.name() == 'ADMIN' or usuarioLogado.tipo.name() == 'FUNCIONARIO'}">
+        |
+        <a th:href="@{'/livros/ativar-desativar/' + ${livro.id}}">
+            <span th:text="${livro.ativo} ? 'Desativar' : 'Ativar'"></span>
+        </a>
+    </span>
             </td>
+
         </tr>
         </tbody>
     </table>

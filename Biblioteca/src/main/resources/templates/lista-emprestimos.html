@@ -1,27 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{layout :: layout(~{::title}, ~{::main})}">
+      th:replace="~{layout :: layout (~{::title}, ~{::main})}">
 <head>
     <title>Lista de Empréstimos</title>
 </head>
+
 <main>
-    <h1>📄 Lista de Empréstimos</h1>
+    <h1>📖 Empréstimos</h1>
+
+    <div th:if="${mensagem}" style="color: green;" th:text="${mensagem}"></div>
+    <div th:if="${erro}" style="color: red;" th:text="${erro}"></div>
 
     <table border="1">
         <thead>
         <tr>
-            <th>Livro</th>
+            <th>Título do Livro</th>
             <th>Usuário</th>
-            <th>Data Empréstimo</th>
-            <th>Data Devolução</th>
+            <th>Data de Empréstimo</th>
+            <th>Data de Devolução</th>
+            <th>Horário de Devolução</th>
+            <th>Ação</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="emp : ${emprestimos}">
-            <td th:text="${emp.livro.titulo}"></td>
-            <td th:text="${emp.usuario.nome}"></td>
-            <td th:text="${emp.dataEmprestimo}"></td>
-            <td th:text="${emp.dataDevolucao != null ? emp.dataDevolucao : '---'}"></td>
+        <tr th:each="emprestimo : ${emprestimos}">
+            <td th:text="${emprestimo.livro.titulo}"></td>
+            <td th:text="${emprestimo.nomeUsuario}"></td>
+            <td th:text="${emprestimo.dataEmprestimo}"></td>
+            <td th:text="${emprestimo.dataDevolucao != null ? emprestimo.dataDevolucao : '---'}"></td>
+            <td th:text="${emprestimo.horarioDevolucao != null ? #temporals.format(emprestimo.horarioDevolucao, 'HH:mm:ss') : '---'}"></td>
+            <td>
+                <a th:if="${emprestimo.dataDevolucao == null}"
+                   th:href="@{'/emprestimos/emprestimos/devolver/' + ${emprestimo.id}}">
+                    Devolver
+                </a>
+                <span th:if="${emprestimo.dataDevolucao != null}">Finalizado</span>
+            </td>
         </tr>
         </tbody>
     </table>

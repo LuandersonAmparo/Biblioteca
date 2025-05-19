@@ -2,6 +2,7 @@ package br.com.Biblioteca.Biblioteca.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 public class Emprestimo {
@@ -18,6 +19,8 @@ public class Emprestimo {
     private LocalDate dataEmprestimo;
 
     private LocalDate dataDevolucao;
+
+    private LocalTime horarioDevolucao;
 
     public Emprestimo() {}
 
@@ -66,5 +69,18 @@ public class Emprestimo {
 
     public void setDataDevolucao(LocalDate dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
+    }
+
+    public LocalTime getHorarioDevolucao() {return horarioDevolucao;}
+
+    public void setHorarioDevolucao(LocalTime horarioDevolucao) {this.horarioDevolucao = horarioDevolucao;}
+
+    public Emprestimo(Long id, Livro livro, String nomeUsuario, LocalDate dataEmprestimo, LocalDate dataDevolucao, LocalTime horarioDevolucao) {
+        this.id = id;
+        this.livro = livro;
+        this.nomeUsuario = nomeUsuario;
+        this.dataEmprestimo = dataEmprestimo;
+        this.dataDevolucao = dataDevolucao;
+        this.horarioDevolucao = horarioDevolucao;
     }
 }

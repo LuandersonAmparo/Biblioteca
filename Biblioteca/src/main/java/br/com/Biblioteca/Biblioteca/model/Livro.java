@@ -15,6 +15,7 @@ public class Livro {
     private String isbn;
     private String categoria;
     private int quantidade;
+    private boolean ativo = true;
 
     public Livro() {
     }
@@ -54,12 +55,18 @@ public class Livro {
 
     public void setQuantidade(int quantidade) {this.quantidade = quantidade;}
 
-    public Livro(Long id, String titulo, String autor, String isbn, String categoria, int quantidade) {
+    public boolean isAtivo() {return ativo;}
+
+    public void setAtivo(boolean ativo) {this.ativo = ativo;}
+
+
+    public Livro(Long id, String titulo, String autor, String isbn, String categoria, int quantidade, boolean ativo) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
         this.isbn = isbn;
         this.categoria = categoria;
         this.quantidade = quantidade;
+        this.ativo = ativo;
     }
 }

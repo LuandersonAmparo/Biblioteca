@@ -15,8 +15,9 @@ public class LivroController {
     @Autowired
     private LivroRepository livroRepo;
 
+
     // Formulário para adicionar novo livro
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'FUNCIONARIO')")
     @GetMapping("/novo")
     public String novoLivro(Model model) {
         model.addAttribute("livro", new Livro());
@@ -47,4 +48,14 @@ public class LivroController {
         livroRepo.deleteById(id);
         return "redirect:/";
     }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'FUNCIONARIO')")
+    @GetMapping("/ativar-desativar/{id}")
+    public String ativarOuDesativarLivro(@PathVariable Long id) {
+        Livro livro = livroRepo.findById(id).orElseThrow();
+        livro.setAtivo(!livro.isAtivo());
+        livroRepo.save(livro);
+        return "redirect:/";
+    }
+
 }

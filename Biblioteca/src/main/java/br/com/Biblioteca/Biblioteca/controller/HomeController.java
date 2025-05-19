@@ -1,6 +1,7 @@
 package br.com.Biblioteca.Biblioteca.controller;
 
 import br.com.Biblioteca.Biblioteca.model.Livro;
+import br.com.Biblioteca.Biblioteca.model.Usuario;
 import br.com.Biblioteca.Biblioteca.repository.LivroRepository;
 import br.com.Biblioteca.Biblioteca.service.UsuarioLogadoService;
 
@@ -25,25 +26,40 @@ public class HomeController {
                        @RequestParam(required = false) String filtro,
                        Model model) {
 
+        Usuario usuarioLogado = usuarioLogadoService.getUsuarioLogado();
         List<Livro> livros;
+
+        boolean isAdmin = usuarioLogado != null && usuarioLogado.getTipo().name().equals("ADMIN");
+        boolean isFuncionario = usuarioLogado != null && usuarioLogado.getTipo().name().equals("FUNCIONARIO");
+
         if (busca != null && !busca.isEmpty()) {
             switch (filtro) {
                 case "autor":
-                    livros = livroRepo.findByAutorContainingIgnoreCase(busca);
+                    livros = (isAdmin || isFuncionario)
+                            ? livroRepo.findByAutorContainingIgnoreCase(busca)
+                            : livroRepo.findByAutorContainingIgnoreCaseAndAtivoTrue(busca);
                     break;
                 case "categoria":
-                    livros = livroRepo.findByCategoriaContainingIgnoreCase(busca);
+                    livros = (isAdmin || isFuncionario)
+                            ? livroRepo.findByCategoriaContainingIgnoreCase(busca)
+                            : livroRepo.findByCategoriaContainingIgnoreCaseAndAtivoTrue(busca);
                     break;
                 default:
-                    livros = livroRepo.findByTituloContainingIgnoreCase(busca);
+                    livros = (isAdmin || isFuncionario)
+                            ? livroRepo.findByTituloContainingIgnoreCase(busca)
+                            : livroRepo.findByTituloContainingIgnoreCaseAndAtivoTrue(busca);
             }
         } else {
-            livros = livroRepo.findAll();
+            livros = (isAdmin || isFuncionario)
+                    ? livroRepo.findAll()
+                    : livroRepo.findByAtivoTrue();
         }
 
         model.addAttribute("livros", livros);
-        model.addAttribute("usuarioLogado", usuarioLogadoService.getUsuarioLogado());
+        model.addAttribute("usuarioLogado", usuarioLogado);
 
         return "home";
     }
+
+
 }

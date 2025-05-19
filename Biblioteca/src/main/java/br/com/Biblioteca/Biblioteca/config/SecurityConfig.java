@@ -19,24 +19,27 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/",
-                                "/login",
-                                "/css/**",
-                                "/js/**",
-                                "/usuario/novo",
-                                "/usuario/salvar",
-                                "/alunos/novo",
-                                "/alunos/salvar",
+                                "/", "/login", "/css/**", "/js/**",
+                                "/usuario/novo", "/usuario/salvar",
+                                "/alunos/novo", "/alunos/salvar",
                                 "/h2-console/**"
                         ).permitAll()
 
                         // Acesso ao perfil: qualquer usuário autenticado
                         .requestMatchers("/perfil", "/alugar/**").hasAnyRole("ADMIN", "FUNCIONARIO", "ALUNO")
 
-                        // Apenas ADMIN pode acessar rotas de livros e usuários
+                        // Exceção para permitir acesso ao perfil
+                        .requestMatchers("/usuarios/perfil").hasAnyRole("ADMIN", "FUNCIONARIO", "ALUNO")
+
+                        // Permitir ativar/desativar para ADMIN e FUNCIONARIO
+                        .requestMatchers("/livros/ativar-desativar/**").hasAnyRole("ADMIN", "FUNCIONARIO")
+
+                        // Permitir cadastrar livro para ADMIN e FUNCIONARIO
+                        .requestMatchers("/livros/novo", "/livros/salvar").hasAnyRole("ADMIN", "FUNCIONARIO")
+
+                        // 🔒 Todas as outras rotas de /livros e /usuarios só para ADMIN
                         .requestMatchers("/livros/**", "/usuarios/**").hasRole("ADMIN")
 
-                        // Qualquer outra requisição precisa de autenticação
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -60,6 +63,9 @@ public class SecurityConfig {
 
         return http.build();
     }
+
+
+
 
 
 
