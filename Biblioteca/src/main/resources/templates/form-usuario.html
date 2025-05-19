@@ -7,17 +7,14 @@
 <main>
     <h1>Novo Usuário</h1>
 
-    <form th:action="@{/usuario/salvar}" th:object="${usuario}" method="post">
-        <label>Nome:</label>
+    <form th:action="@{/alunos/salvar}" th:object="${usuario}" method="post">
+    <label>Nome:</label>
         <input type="text" th:field="*{nome}" required/><br/>
         <label>Login:</label>
         <input type="text" th:field="*{login}" required/><br/>
         <label>Senha:</label>
         <input type="password" th:field="*{senha}" required/><br/>
         <label>Tipo:</label>
-        <select th:field="*{tipo}">
-            <option th:each="tipo : ${tipos}" th:value="${tipo}" th:text="${tipo}"></option>
-        </select><br/>
         <button type="submit">Salvar</button>
     </form>
 </main>

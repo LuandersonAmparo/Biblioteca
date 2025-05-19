@@ -1,7 +1,7 @@
 package br.com.Biblioteca.Biblioteca.controller;
 
-import br.com.Biblioteca.Biblioteca.model.Usuario;
 import br.com.Biblioteca.Biblioteca.model.TipoUsuario;
+import br.com.Biblioteca.Biblioteca.model.Usuario;
 import br.com.Biblioteca.Biblioteca.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/usuarios")
-public class UsuarioController {
+@RequestMapping("/alunos")
+public class AlunoController {
 
     @Autowired
     private UsuarioRepository usuarioRepo;
@@ -20,16 +20,17 @@ public class UsuarioController {
     private PasswordEncoder encoder;
 
     @GetMapping("/novo")
-    public String formularioCadastro(Model model) {
-        model.addAttribute("usuario", new Usuario());
-        model.addAttribute("tipos", TipoUsuario.values()); // permite selecionar FUNCIONARIO ou ADMIN
-        return "form-cadastro";
+    public String novoAluno(Model model) {
+        Usuario aluno = new Usuario();
+        aluno.setTipo(TipoUsuario.ALUNO); // já define o tipo automaticamente
+        model.addAttribute("usuario", aluno);
+        return "form-usuario";
     }
 
-    @PostMapping("/novo")
-    public String salvarFuncionarioOuAdmin(@ModelAttribute Usuario usuario) {
+    @PostMapping("/salvar")
+    public String salvarAluno(@ModelAttribute Usuario usuario) {
         usuario.setSenha(encoder.encode(usuario.getSenha()));
         usuarioRepo.save(usuario);
-        return "redirect:/";
+        return "redirect:/login";
     }
 }

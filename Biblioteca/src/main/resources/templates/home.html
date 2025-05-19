@@ -5,6 +5,8 @@
     <title>Início</title>
 </head>
 <main>
+    <div th:if="${mensagem}" style="color: green;" th:text="${mensagem}"></div>
+    <div th:if="${erro}" style="color: red;" th:text="${erro}"></div>
     <h1>📚 Lista de Livros</h1>
 
     <form method="get" action="/">
@@ -17,8 +19,12 @@
         <button type="submit">Buscar</button>
     </form>
     <!-- tRECHO QUE ADICIONA O BOTÃO ADD LIVRO SE O USUARIO FOR admin-->
-    <div th:if="${usuarioLogado != null and usuarioLogado.tipo == 'ADMIN'}">
+    <div th:if="${usuarioLogado != null and usuarioLogado.tipo.name() == 'ADMIN'}">
         <a href="/livros/novo">➕ Adicionar Livro</a>
+    </div>
+
+    <div th:if="${usuarioLogado != null and usuarioLogado.tipo.name() == 'ADMIN'}">
+        <a href="/usuarios/novo">👥 Cadastrar Funcionário/ADM</a>
     </div>
 
     <table border="1">

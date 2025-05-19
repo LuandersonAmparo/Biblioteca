@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -92,18 +93,32 @@ public class EmprestimoController {
         return "redirect:/emprestimos";
     }
     @GetMapping("/alugar/{id}")
-    public String alugarLivro(@PathVariable Long id) {
+    public String alugarLivro(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         Livro livro = livroRepo.findById(id).orElseThrow();
         Usuario usuario = usuarioLogadoService.getUsuarioLogado();
 
-        Emprestimo emprestimo = new Emprestimo();
-        emprestimo.setLivro(livro);
-        emprestimo.setNomeUsuario(usuario.getNome()); // CORRETO
-        emprestimo.setDataEmprestimo(LocalDate.now());
+        // Verifica se o livro está disponível
+        if (livro.getQuantidade() > 0) {
+            // Reduz a quantidade
+            livro.setQuantidade(livro.getQuantidade() - 1);
+            livroRepo.save(livro);
 
-        emprestimoRepo.save(emprestimo);
+            // Cria o registro de empréstimo
+            Emprestimo emprestimo = new Emprestimo();
+            emprestimo.setLivro(livro);
+            emprestimo.setNomeUsuario(usuario.getNome());
+            emprestimo.setDataEmprestimo(LocalDate.now());
+
+            emprestimoRepo.save(emprestimo);
+
+            redirectAttributes.addFlashAttribute("mensagem", "Livro alugado com sucesso!");
+        } else {
+            redirectAttributes.addFlashAttribute("erro", "Este livro está indisponível para empréstimo.");
+        }
+
         return "redirect:/";
     }
+
 
 
 

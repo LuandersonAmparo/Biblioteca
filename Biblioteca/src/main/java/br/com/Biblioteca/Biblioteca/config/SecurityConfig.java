@@ -18,7 +18,17 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/login", "/css/**", "/js/**", "/usuario/novo", "/usuario/salvar", "/h2-console/**").permitAll()
+                        .requestMatchers(
+                                "/",
+                                "/login",
+                                "/css/**",
+                                "/js/**",
+                                "/usuario/novo",
+                                "/usuario/salvar",
+                                "/alunos/novo",
+                                "/alunos/salvar",
+                                "/h2-console/**"
+                        ).permitAll()
 
                         // Acesso ao perfil: qualquer usuário autenticado
                         .requestMatchers("/perfil", "/alugar/**").hasAnyRole("ADMIN", "FUNCIONARIO", "ALUNO")
