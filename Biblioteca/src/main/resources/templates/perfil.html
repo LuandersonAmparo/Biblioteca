@@ -37,7 +37,7 @@
   </table>
 
   <!-- 👨‍🎓 Alunos, Funcionários e Todos os Empréstimos - visível para FUNCIONARIO e ADMIN -->
-  <div th:if="${usuario.tipo != T(br.com.Biblioteca.Biblioteca.model.TipoUsuario).ALUNO}">
+  <div th:if="${usuario.tipo.name() != 'ALUNO'}">
   <hr/>
     <h2>👨‍🎓 Alunos Cadastrados</h2>
     <table border="1">
