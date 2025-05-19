@@ -38,7 +38,8 @@
             <td th:text="${livro.isbn}"></td>
             <td th:text="${livro.categoria}"></td>
             <td>
-                <a th:href="@{'/alugar/' + ${livro.id}}">Alugar</a>
+                <a th:href="@{'/emprestimos/alugar/' + ${livro.id}}">Alugar</a>
+
             </td>
         </tr>
         </tbody>

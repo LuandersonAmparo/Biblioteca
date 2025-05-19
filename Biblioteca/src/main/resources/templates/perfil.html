@@ -11,7 +11,7 @@
   <p><strong>Tipo:</strong> <span th:text="${usuario.tipo}"></span></p>
 
   <hr/>
-
+<!--Trecho meus Emprestimos  -->
   <h2>📚 Meus Empréstimos</h2>
   <table border="1">
     <thead>
@@ -34,6 +34,53 @@
     </tr>
     </tbody>
   </table>
+<!-- Treco Alunos Cadastrados -->
+  <h2>👨‍🎓 Alunos Cadastrados</h2>
+  <table border="1">
+    <thead>
+    <tr><th>Nome</th><th>Login</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="a : ${alunos}">
+      <td th:text="${a.nome}"></td>
+      <td th:text="${a.login}"></td>
+    </tr>
+    </tbody>
+  </table>
+  <!-- Trecho Lista Funcionarios-->
+  <h2>🧑‍💼 Funcionários Cadastrados</h2>
+  <table border="1">
+    <thead>
+    <tr><th>Nome</th><th>Login</th></tr>
+    </thead>
+    <tbody>
+    <tr th:each="f : ${funcionarios}">
+      <td th:text="${f.nome}"></td>
+      <td th:text="${f.login}"></td>
+    </tr>
+    </tbody>
+  </table>
+<!-- Trecho Todos os Emprestimos -->
+  <h2>📄 Todos os Empréstimos</h2>
+  <table border="1">
+    <thead>
+    <tr>
+      <th>Livro</th>
+      <th>Usuário</th>
+      <th>Data Empréstimo</th>
+      <th>Data Devolução</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="e : ${todosEmprestimos}">
+      <td th:text="${e.livro.titulo}"></td>
+      <td th:text="${e.nomeUsuario}"></td>
+      <td th:text="${e.dataEmprestimo}"></td>
+      <td th:text="${e.dataDevolucao != null ? e.dataDevolucao : '---'}"></td>
+    </tr>
+    </tbody>
+  </table>
+
 
   <!-- SEÇÃO ADMIN -->
   <div th:if="${usuario.tipo == 'ADMIN'}">

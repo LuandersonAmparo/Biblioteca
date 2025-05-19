@@ -93,14 +93,19 @@ public class EmprestimoController {
     }
     @GetMapping("/alugar/{id}")
     public String alugarLivro(@PathVariable Long id) {
-        var auth = SecurityContextHolder.getContext().getAuthentication();
+        Livro livro = livroRepo.findById(id).orElseThrow();
+        Usuario usuario = usuarioLogadoService.getUsuarioLogado();
 
-        if (auth == null || auth.getAuthorities().isEmpty() || auth.getPrincipal().equals("anonymousUser")) {
-            return "redirect:/login";
-        }
+        Emprestimo emprestimo = new Emprestimo();
+        emprestimo.setLivro(livro);
+        emprestimo.setNomeUsuario(usuario.getNome()); // CORRETO
+        emprestimo.setDataEmprestimo(LocalDate.now());
 
-        return "redirect:/emprestimos/novo?livro=" + id;
+        emprestimoRepo.save(emprestimo);
+        return "redirect:/";
     }
+
+
 
 
 }
