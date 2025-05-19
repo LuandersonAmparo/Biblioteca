@@ -47,18 +47,37 @@ public class UsuarioController {
         Usuario usuario = usuarioLogadoService.getUsuarioLogado();
         model.addAttribute("usuario", usuario);
 
-        // Empréstimos do próprio usuário
-        model.addAttribute("emprestimos", emprestimoRepo.findByNomeUsuario(usuario.getNome()));
+        System.out.println(">>> Acessando perfil: " + usuario.getNome() + " | Tipo: " + usuario.getTipo());
 
-        if (usuario.getTipo() == TipoUsuario.ADMIN) {
-            model.addAttribute("livros", livroRepo.findAll());
-            model.addAttribute("alunos", usuarioRepo.findByTipo(TipoUsuario.ALUNO));
-            model.addAttribute("funcionarios", usuarioRepo.findByTipo(TipoUsuario.FUNCIONARIO));
-            model.addAttribute("todosEmprestimos", emprestimoRepo.findAll());
+        // Empréstimos do próprio usuário
+        var emprestimosDoUsuario = emprestimoRepo.findByNomeUsuario(usuario.getNome());
+        model.addAttribute("emprestimos", emprestimosDoUsuario);
+        System.out.println(">>> Empréstimos encontrados: " + emprestimosDoUsuario.size());
+
+        // ADMIN e FUNCIONARIO têm acesso a mais dados
+        if (usuario.getTipo() == TipoUsuario.ADMIN || usuario.getTipo() == TipoUsuario.FUNCIONARIO) {
+            var livros = livroRepo.findAll();
+            var alunos = usuarioRepo.findByTipo(TipoUsuario.ALUNO);
+            var funcionarios = usuarioRepo.findByTipo(TipoUsuario.FUNCIONARIO);
+            var todosEmprestimos = emprestimoRepo.findAll();
+            var usuarios = usuarioRepo.findAll();
+
+            model.addAttribute("livros", livros);
+            model.addAttribute("alunos", alunos);
+            model.addAttribute("funcionarios", funcionarios);
+            model.addAttribute("todosEmprestimos", todosEmprestimos);
+            model.addAttribute("usuarios", usuarios);
+
+            System.out.println(">>> Livros: " + livros.size());
+            System.out.println(">>> Alunos: " + alunos.size());
+            System.out.println(">>> Funcionários: " + funcionarios.size());
+            System.out.println(">>> Todos os empréstimos: " + todosEmprestimos.size());
+            System.out.println(">>> Total de usuários: " + usuarios.size());
         }
 
         return "perfil";
     }
+
 
 
 

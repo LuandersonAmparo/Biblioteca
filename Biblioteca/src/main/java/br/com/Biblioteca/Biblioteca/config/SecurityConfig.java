@@ -1,11 +1,13 @@
 package br.com.Biblioteca.Biblioteca.config;
 
+import br.com.Biblioteca.Biblioteca.repository.UsuarioRepository;
 import br.com.Biblioteca.Biblioteca.service.AutenticacaoService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -16,7 +18,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/","/login", "/css/**", "/js/**", "/usuario/novo", "/usuario/salvar", "/h2-console/**","/perfil","/alugar/**").permitAll()
+                        .requestMatchers("/", "/login", "/css/**", "/js/**", "/usuario/novo", "/usuario/salvar", "/h2-console/**").permitAll()
+
+                        // Acesso ao perfil: qualquer usuário autenticado
+                        .requestMatchers("/perfil", "/alugar/**").hasAnyRole("ADMIN", "FUNCIONARIO", "ALUNO")
+
+                        // Apenas ADMIN pode acessar rotas de livros e usuários
+                        .requestMatchers("/livros/**", "/usuarios/**").hasRole("ADMIN")
+
+                        // Qualquer outra requisição precisa de autenticação
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -25,20 +35,22 @@ public class SecurityConfig {
                         .permitAll()
                 )
                 .logout(logout -> logout
-                        .logoutUrl("/logout") // padrão: /logout (POST por segurança)
-                        .logoutSuccessUrl("/") // redireciona para a home
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .permitAll()
                 )
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/h2-console/**")
+                )
                 .headers(headers -> headers
                         .frameOptions(frame -> frame.disable())
                 );
 
-
         return http.build();
     }
+
 
 
     @Bean
@@ -50,4 +62,12 @@ public class SecurityConfig {
     public AuthenticationManager authManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
+
+    @Bean
+    public UserDetailsService userDetailsService(UsuarioRepository usuarioRepo) {
+        return new AutenticacaoService(usuarioRepo);
+    }
+
+
+
 }
