@@ -29,6 +29,7 @@ public class AlunoController {
 
     @PostMapping("/salvar")
     public String salvarAluno(@ModelAttribute Usuario usuario) {
+        usuario.setTipo(TipoUsuario.ALUNO);
         usuario.setSenha(encoder.encode(usuario.getSenha()));
         usuarioRepo.save(usuario);
         return "redirect:/login";

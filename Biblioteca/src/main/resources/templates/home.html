@@ -47,16 +47,23 @@
         <tbody>
         <tr th:each="livro : ${livros}">
             <td th:text="${livro.titulo}"></td>
-            <td th:text="${livro.autor}"></td>
+            <td>
+  <span th:each="autor, iterStat : ${livro.autores}">
+    <span th:text="${autor.nome}"></span>
+    <span th:if="${!iterStat.last}">, </span>
+  </span>
+            </td>
+
+
             <td th:text="${livro.isbn}"></td>
             <td th:text="${livro.categoria}"></td>
             <td>
                 <!-- Apenas ALUNO pode ver o botão "Alugar" -->
-                <a th:if="${usuarioLogado.tipo.name() == 'ALUNO'}"
+                <a th:if="${usuarioLogado != null and usuarioLogado.tipo.name() == 'ALUNO'}"
                    th:href="@{'/emprestimos/alugar/' + ${livro.id}}">Alugar</a>
 
                 <!-- ADMIN e FUNCIONARIO podem ativar/desativar -->
-                <span th:if="${usuarioLogado.tipo.name() == 'ADMIN' or usuarioLogado.tipo.name() == 'FUNCIONARIO'}">
+                <span th:if="${usuarioLogado != null and (usuarioLogado.tipo.name() == 'ADMIN' or usuarioLogado.tipo.name() == 'FUNCIONARIO')}">
         |
         <a th:href="@{'/livros/ativar-desativar/' + ${livro.id}}">
             <span th:text="${livro.ativo} ? 'Desativar' : 'Ativar'"></span>

@@ -36,8 +36,8 @@ public class HomeController {
             switch (filtro) {
                 case "autor":
                     livros = (isAdmin || isFuncionario)
-                            ? livroRepo.findByAutorContainingIgnoreCase(busca)
-                            : livroRepo.findByAutorContainingIgnoreCaseAndAtivoTrue(busca);
+                            ? livroRepo.findByAutorNomeContainingIgnoreCase(busca)
+                            : livroRepo.findByAutorNomeContainingIgnoreCaseAndAtivoTrue(busca);
                     break;
                 case "categoria":
                     livros = (isAdmin || isFuncionario)

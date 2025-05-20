@@ -22,6 +22,10 @@ public class Emprestimo {
 
     private LocalTime horarioDevolucao;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
     public Emprestimo() {}
 
     public Emprestimo(Livro livro, String nomeUsuario, LocalDate dataEmprestimo, LocalDate dataDevolucao) {
@@ -75,12 +79,17 @@ public class Emprestimo {
 
     public void setHorarioDevolucao(LocalTime horarioDevolucao) {this.horarioDevolucao = horarioDevolucao;}
 
-    public Emprestimo(Long id, Livro livro, String nomeUsuario, LocalDate dataEmprestimo, LocalDate dataDevolucao, LocalTime horarioDevolucao) {
+    public Usuario getUsuario() {return usuario;}
+
+    public void setUsuario(Usuario usuario) {this.usuario = usuario;}
+
+    public Emprestimo(Long id, Livro livro, String nomeUsuario, LocalDate dataEmprestimo, LocalDate dataDevolucao, LocalTime horarioDevolucao, Usuario usuario) {
         this.id = id;
         this.livro = livro;
         this.nomeUsuario = nomeUsuario;
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucao = dataDevolucao;
         this.horarioDevolucao = horarioDevolucao;
+        this.usuario = usuario;
     }
 }

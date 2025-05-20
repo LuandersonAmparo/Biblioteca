@@ -1856,3 +1856,366 @@ ALTER TABLE emprestimo ADD horario_devolucao TIME [42121-232]
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-05-19 23:24:01.891471-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "LIVRO" because "FKLRAQO5MKOV260QR5H3ES93SGR" depends on it; SQL statement:
+DROP TABLE livro [90107-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:644)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:108)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:139)
+	at org.h2.command.Command.executeUpdate(Command.java:304)
+	at org.h2.command.Command.executeUpdate(Command.java:248)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:262)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1344)
+	at org.h2.server.web.WebApp.query(WebApp.java:1142)
+	at org.h2.server.web.WebApp.query(WebApp.java:1118)
+	at org.h2.server.web.WebApp.process(WebApp.java:244)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-05-19 23:25:36.549504-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (101, 'Victor Hugo') [42102-232]
+2025-05-19 23:25:36.550505-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (102, 'Hermann Hesse') [42102-232]
+2025-05-19 23:25:36.550505-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (103, 'Stendhal') [42102-232]
+2025-05-19 23:25:36.551505-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (104, 'Eça de Queirós') [42102-232]
+2025-05-19 23:25:36.552503-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (105, 'Fiódor Dostoiévski') [42102-232]
+2025-05-19 23:25:36.552503-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (106, 'José Saramago') [42102-232]
+2025-05-19 23:25:36.553503-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (107, 'Patrick Rothfuss') [42102-232]
+2025-05-19 23:25:36.553503-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (108, 'William Golding') [42102-232]
+2025-05-19 23:25:36.554464-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (109, 'Emily Brontë') [42102-232]
+2025-05-19 23:25:36.555701-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (110, 'Mary Shelley') [42102-232]
+2025-05-19 23:25:36.556174-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (111, 'C.S. Lewis') [42102-232]
+2025-05-19 23:25:36.557178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (112, 'Harper Lee') [42102-232]
+2025-05-19 23:25:36.558178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (113, 'Umberto Eco') [42102-232]
+2025-05-19 23:25:36.559181-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (114, 'Franz Kafka') [42102-232]
+2025-05-19 23:25:36.560180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (115, 'Oscar Wilde') [42102-232]
+2025-05-19 23:25:36.561179-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (116, 'Robert Louis Stevenson') [42102-232]
+2025-05-19 23:25:36.569178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (117, 'Nathaniel Hawthorne') [42102-232]
+2025-05-19 23:25:36.570178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (118, 'Robert Louis Stevenson') [42102-232]
+2025-05-19 23:25:36.571178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (119, 'Fiódor Dostoiévski') [42102-232]
+2025-05-19 23:25:36.571178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (120, 'Thomas Mann') [42102-232]
+2025-05-19 23:25:36.572178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (121, 'Ernest Hemingway') [42102-232]
+2025-05-19 23:25:36.572178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (122, 'William Faulkner') [42102-232]
+2025-05-19 23:25:36.573181-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (123, 'Henry James') [42102-232]
+2025-05-19 23:25:36.573181-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (124, 'Joseph Conrad') [42102-232]
+2025-05-19 23:25:36.574181-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (125, 'João Guimarães Rosa') [42102-232]
+2025-05-19 23:25:36.574181-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (126, 'H.G. Wells') [42102-232]
+2025-05-19 23:25:36.575178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (127, 'Frances Hodgson Burnett') [42102-232]
+2025-05-19 23:25:36.575178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (128, 'Victor Hugo') [42102-232]
+2025-05-19 23:25:36.575178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "AUTOR" not found; SQL statement:
+INSERT INTO autor (id, nome) VALUES (129, 'Paul Auster') [42102-232]
+2025-05-19 23:25:36.576178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (201, 'O Homem que Riu', '978-0140449631', 'Clássico', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.577180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (202, 'O Lobo da Estepe', '978-0312278670', 'Ficção', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.577180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (203, 'O Vermelho e o Negro', '978-0140447644', 'Romance', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.581179-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (204, 'O Primo Basílio', '978-9722030000', 'Literatura Portuguesa', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.581179-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (205, 'O Jogador', '978-0140441796', 'Romance Psicológico', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.582180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (206, 'O Homem Duplicado', '978-0156028011', 'Ficção', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.582180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (207, 'O Nome do Vento', '978-0756404741', 'Fantasia', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.583180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (208, 'O Senhor das Moscas', '978-0399501487', 'Ficção', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.583180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (209, 'O Morro dos Ventos Uivantes', '978-0141439556', 'Romance Gótico', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.584180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (210, 'Frankenstein', '978-0486282114', 'Ficção Científica', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.584180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (211, 'As Crônicas de Nárnia', '978-0066238500', 'Fantasia', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.585180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (212, 'O Sol é Para Todos', '978-0060935467', 'Clássico Americano', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.585180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (213, 'O Nome da Rosa', '978-0156001311', 'Mistério', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.585180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (214, 'O Processo', '978-0805209990', 'Ficção', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.586181-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (215, 'O Retrato de Dorian Gray', '978-0141439570', 'Clássico', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.587180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (216, 'A Ilha do Tesouro', '978-0486275598', 'Aventura', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.587180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (217, 'A Letra Escarlate', '978-0142437261', 'Clássico Americano', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.588180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (218, 'O Médico e o Monstro', '978-0486266886', 'Horror', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.588180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (219, 'O Idiota', '978-0140447927', 'Romance Psicológico', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.589181-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (220, 'A Montanha Mágica', '978-0679772873', 'Clássico', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.589181-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (221, 'O Velho e o Mar', '978-0684801223', 'Ficção', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.590181-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (222, 'O Som e a Fúria', '978-0679732242', 'Clássico Americano', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.590181-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (223, 'O Retrato de uma Senhora', '978-0141441269', 'Romance', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.591180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (224, 'O Coração das Trevas', '978-0141441672', 'Aventura', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.591180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (225, 'Grande Sertão: Veredas', '978-8535925996', 'Literatura Brasileira', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.592180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (226, 'O Homem Invisível', '978-0451531674', 'Ficção Científica', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.592180-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (227, 'O Jardim Secreto', '978-0141336534', 'Infantil', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.593179-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (228, 'O Corcunda de Notre-Dame', '978-0140443530', 'Clássico', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.593179-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO" not found; SQL statement:
+INSERT INTO livro (id, titulo, isbn, categoria, quantidade, ativo) VALUES (229, 'O Livro das Ilusões', '978-0312421816', 'Ficção', 2, TRUE) [42102-232]
+2025-05-19 23:25:36.594182-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (201, 101) [42102-232]
+2025-05-19 23:25:36.594182-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (202, 102) [42102-232]
+2025-05-19 23:25:36.595178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (203, 103) [42102-232]
+2025-05-19 23:25:36.595178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (204, 104) [42102-232]
+2025-05-19 23:25:36.595178-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (205, 105) [42102-232]
+2025-05-19 23:25:36.596181-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (206, 106) [42102-232]
+2025-05-19 23:25:36.599179-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (207, 107) [42102-232]
+2025-05-19 23:25:36.649683-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (208, 108) [42102-232]
+2025-05-19 23:25:36.649683-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (209, 109) [42102-232]
+2025-05-19 23:25:36.650683-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (210, 110) [42102-232]
+2025-05-19 23:25:36.650683-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (211, 111) [42102-232]
+2025-05-19 23:25:36.651683-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (212, 112) [42102-232]
+2025-05-19 23:25:36.651683-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (213, 113) [42102-232]
+2025-05-19 23:25:36.652683-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (214, 114) [42102-232]
+2025-05-19 23:25:36.652683-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (215, 115) [42102-232]
+2025-05-19 23:25:36.652683-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (216, 116) [42102-232]
+2025-05-19 23:25:36.653683-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (217, 117) [42102-232]
+2025-05-19 23:25:36.653683-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (218, 118) [42102-232]
+2025-05-19 23:25:36.653683-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (219, 119) [42102-232]
+2025-05-19 23:25:36.654683-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (220, 120) [42102-232]
+2025-05-19 23:25:36.654683-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (221, 121) [42102-232]
+2025-05-19 23:25:36.655687-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (222, 122) [42102-232]
+2025-05-19 23:25:36.655687-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (223, 123) [42102-232]
+2025-05-19 23:25:36.655687-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (224, 124) [42102-232]
+2025-05-19 23:25:36.656687-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (225, 125) [42102-232]
+2025-05-19 23:25:36.656687-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (226, 126) [42102-232]
+2025-05-19 23:25:36.657684-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (227, 127) [42102-232]
+2025-05-19 23:25:36.657684-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (228, 128) [42102-232]
+2025-05-19 23:25:36.657684-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIVRO_AUTOR" not found; SQL statement:
+INSERT INTO livro_autor (livro_id, autor_id) VALUES (229, 129) [42102-232]

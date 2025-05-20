@@ -1,6 +1,8 @@
 package br.com.Biblioteca.Biblioteca;
 
+import br.com.Biblioteca.Biblioteca.model.Autor;
 import br.com.Biblioteca.Biblioteca.model.Livro;
+import br.com.Biblioteca.Biblioteca.repository.AutorRepository;
 import br.com.Biblioteca.Biblioteca.repository.LivroRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -28,14 +30,14 @@ public class BibliotecaApplication {
 	}
 
 	@Bean
-	CommandLineRunner init(LivroRepository livroRepo) {
+	CommandLineRunner init(LivroRepository livroRepo, AutorRepository autorRepo) {
 		return args -> {
 			if (livroRepo.count() == 0) {
 				try (BufferedReader reader = new BufferedReader(
 						new InputStreamReader(getClass().getResourceAsStream("/old/lista de livros.txt"), StandardCharsets.UTF_8))) {
 
 					String linha;
-					String titulo = null, autor = null, isbn = null, categoria = null;
+					String titulo = null, autorNome = null, isbn = null, categoria = null;
 
 					while ((linha = reader.readLine()) != null) {
 						linha = linha.trim();
@@ -43,17 +45,23 @@ public class BibliotecaApplication {
 						if (linha.startsWith("Título:")) {
 							titulo = linha.replace("Título:", "").trim();
 						} else if (linha.startsWith("Autor:")) {
-							autor = linha.replace("Autor:", "").trim();
+							autorNome = linha.replace("Autor:", "").trim();
 						} else if (linha.startsWith("ISBN:")) {
 							isbn = linha.replace("ISBN:", "").trim();
 						} else if (linha.startsWith("Categoria:")) {
 							categoria = linha.replace("Categoria:", "").trim();
 
+							// Criação do objeto Autor
+							Autor autor = new Autor();
+							autor.setNome(autorNome);
+							autorRepo.save(autor);
+
 							Livro livro = new Livro();
 							livro.setTitulo(titulo);
-							livro.setAutor(autor);
+							livro.setAutores(List.of(autor)); // ✅ agora sim
 							livro.setIsbn(isbn);
 							livro.setCategoria(categoria);
+							livro.setQuantidade(1); // ou outro valor
 
 							livroRepo.save(livro);
 							System.out.println("✔ Livro salvo: " + titulo);

@@ -1,8 +1,8 @@
 package br.com.Biblioteca.Biblioteca.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Livro {
@@ -11,11 +11,22 @@ public class Livro {
     private Long id;
 
     private String titulo;
-    private String autor;
     private String isbn;
     private String categoria;
     private int quantidade;
     private boolean ativo = true;
+
+    @Transient
+    private String autor;
+
+    @ManyToMany
+    @JoinTable(
+            name = "livro_autor",
+            joinColumns = @JoinColumn(name = "livro_id"),
+            inverseJoinColumns = @JoinColumn(name = "autor_id")
+    )
+    private List<Autor> autores;
+
 
     public Livro() {
     }
@@ -27,14 +38,6 @@ public class Livro {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
     }
 
     public String getIsbn() {
@@ -59,11 +62,17 @@ public class Livro {
 
     public void setAtivo(boolean ativo) {this.ativo = ativo;}
 
+    public List<Autor> getAutores() {return autores;}
 
-    public Livro(Long id, String titulo, String autor, String isbn, String categoria, int quantidade, boolean ativo) {
+    public void setAutores(List<Autor> autores) {this.autores = autores;}
+
+    public String getAutor() {return autor;}
+
+    public void setAutor(String autor) {this.autor = autor;}
+
+    public Livro(Long id, String titulo, String isbn, String categoria, int quantidade, boolean ativo) {
         this.id = id;
         this.titulo = titulo;
-        this.autor = autor;
         this.isbn = isbn;
         this.categoria = categoria;
         this.quantidade = quantidade;

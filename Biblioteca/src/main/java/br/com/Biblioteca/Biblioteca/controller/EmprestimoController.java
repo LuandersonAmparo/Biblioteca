@@ -136,7 +136,8 @@ public class EmprestimoController {
             // Cria o registro de empréstimo
             Emprestimo emprestimo = new Emprestimo();
             emprestimo.setLivro(livro);
-            emprestimo.setNomeUsuario(usuario.getNome());
+            emprestimo.setNomeUsuario(usuario.getNome()); // opcional
+            emprestimo.setUsuario(usuario);                // ESSENCIAL
             emprestimo.setDataEmprestimo(LocalDate.now());
 
             emprestimoRepo.save(emprestimo);
@@ -148,10 +149,5 @@ public class EmprestimoController {
 
         return "redirect:/";
     }
-
-
-
-
-
 
 }
